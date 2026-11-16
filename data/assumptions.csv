@@ -1,0 +1,6 @@
+assumption,value,note
+tax_rate,0.25,Federal and state combined
+risk_free_rate,0.05,For the CAPM
+market_risk_premium,0.06,For the CAPM
+comparable_beta,1.625,Levered beta of a public climbing-gym chain with the same business risk
+comparable_debt_to_equity,0.40,The comparable chain's debt-to-equity ratio at market values (same 25% tax rate)
