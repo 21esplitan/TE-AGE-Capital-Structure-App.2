@@ -1,60 +1,55 @@
-# Basalt Capital Structure App
+# AGE Capital Structure App
 
 **FIN 4150 · Capital Structure**
 
-You will use Claude Code to build a web app that reads Basalt Climbing Co.'s figures and a banker's estimates of its borrowing costs. The app works out what each amount of borrowing does to Basalt's share price, earnings per share (EPS), risk and cost of capital, and it has levers you can move. You then publish it with GitHub Pages, so it installs on your phone or laptop like any other app. A web app that installs this way is called a progressive web app (PWA).
+You will use Claude Code to build a web app for the AGE case. It reads Campus Deli and Sub Shop's (CDSS's) figures and a banker's estimates of its borrowing costs, then works out what each amount of borrowing does to CDSS's share price, earnings per share (EPS), times interest earned (TIE) and cost of capital. It also shows the case's Firm U and Firm L example, and it has levers you can move. You then publish it with GitHub Pages, so it installs on your phone or laptop like any other app. A web app that installs this way is called a progressive web app (PWA).
 
-The lab has two sessions. In Session 1 you work the case by hand. In Session 2 you build the app and check it against your hand work.
+Fill in section 1 of the case worksheet by hand before you start. You will check the app against it.
 
 ## What's in this repository
 
 | File | What it is |
 |---|---|
-| `case/Basalt_Climbing_Case.md` | The case |
-| `data/basalt.csv` | Basalt's operations, book balance sheet and market data. The `section` column says which. |
-| `data/assumptions.csv` | Tax rate, CAPM inputs and the comparable firm's beta and debt-to-equity ratio |
+| `case/AGE_Case.md` | The case |
+| `data/cdss.csv` | CDSS's operations, book balance sheet and market data. The `section` column says which. |
+| `data/assumptions.csv` | The 40% tax rate |
 | `data/banker_schedule.csv` | The banker's cost of debt and cost of equity at each amount of borrowing |
-| `data/scenarios.csv` | Weak, normal and strong years |
-| `data/banker_schedule_tight_credit.csv` | A second banker's schedule, for Part F |
+| `data/example_firms.csv` | Firm U and Firm L's assets, Firm L's debt and interest rate, and the range for the Firm L slider |
+| `data/ebit_scenarios.csv` | The EBIT probability distribution for Firm U and Firm L |
+| `data/banker_schedule_riskier.csv` | A made-up schedule for testing Part F. It is not part of the AGE case. |
 | `icons/` | The app's icons |
 | `CLAUDE.md` | Instructions Claude reads at the start of every session. Read it so you know how Claude has been told to work with you. |
 
-## Session 1
+## Part A: By hand first (no AI)
 
-### Part A: By hand (no AI)
+Fill in section 1 of the case worksheet: Firm L's income statements and ratios from question c(1), and CDSS's shares remaining, EPS, TIE, share price and WACC from questions d(3) to d(7). A calculator is fine. Keep the worksheet next to you, because Claude will ask for your numbers.
 
-Answer case questions 1, 2, 7, 10 and 11 by hand. A calculator is fine. Keep your work next to you in Session 2, because Claude will ask for your numbers.
-
-## Session 2
-
-### Part B: Build the calculator (20 minutes)
+## Part B: Build the calculator (20 minutes)
 
 Start a Claude Code session on your repository and paste this prompt:
 
-> Read CLAUDE.md, README.md and case/Basalt_Climbing_Case.md. Build the first version of the app: a page that reads the files in data/ and shows Basalt's unlevered cost of equity and, for each amount of borrowing in the banker's schedule, the share price, shares repurchased, EPS, TIE, WACC with market and with book weights, MM's value and the implied cost of financial distress. Walk me through it.
+> Read CLAUDE.md, README.md and case/AGE_Case.md. Build the first version of the app: a page that reads the files in data/ and shows Firm U and Firm L's table from question c, and, for each amount of borrowing in the banker's schedule, CDSS's shares repurchased, shares remaining, EPS, TIE, share price and WACC, first with the case's $20 buyback and then with buying back at the new price. Walk me through it.
 
 Then:
 
-- When Claude asks for your Part A numbers, give them. If yours don't match Claude's, figure out who is right and why. Rounding counts, and so does the price Basalt pays for the shares it buys back.
-- Check one number yourself with a calculator: the share price with $1,200,000 of debt, ((600,000 − 78,000) × 0.75 / 0.15 + 1,200,000) / 200,000. It should match the app.
+- When Claude asks for your section 1 numbers, give them. If yours don't match Claude's, figure out who is right and why. Rounding counts.
+- Check one number yourself with a calculator: the share price with $500,000 of debt under the case's $20 buyback, (500,000 − 0.11 × 500,000) × (1 − 0.40) / (100,000 − 500,000 / 20) / 0.165. It should match the app.
 
-### Part C: Add the levers (20 minutes)
+## Part C: Add the levers (20 minutes)
 
 Write your own prompt asking Claude to add two sliders and some buttons.
 
-1. **Debt.** It stops only at the banker's amounts. When it moves, the app shows:
-   - the share price, shares repurchased and shares left
+1. **CDSS's debt.** It stops only at the banker's amounts. When it moves, the app shows, for the case's $20 buyback and for buying back at the new price:
+   - the share price, shares repurchased and shares remaining
    - EPS, dividends per share and TIE
-   - WACC with market and with book weights
-   - MM's value and the implied cost of financial distress
-   - what a special dividend of the same amount would leave each shareholder
-   - the founders' share of the company
-2. **Revenue.** When it moves, the app shows EBIT, DOL, DFL and DTL. It also shows EPS and TIE with no debt and with the chosen debt, and the EBIT at which the two EPS figures are equal.
-3. Add **Weak**, **Normal** and **Strong** buttons that set revenue to the case's three kinds of year, and a **Best price** button that sets debt to the amount with the highest share price.
+   - WACC (book weights with the $20 buyback, market weights with the new price)
+   - management's share of the company
+2. **Firm L's debt.** When it moves, the app shows Firm L's ROE and TIE in each kind of year, its expected ROE, standard deviation of ROE, coefficient of variation, expected TIE and standard deviation of TIE, next to Firm U.
+3. Add a **Best price** button that sets CDSS's debt to the amount with the highest share price, a **Highest EPS** button, and a **Case** button that sets Firm L's debt back to $10,000.
 
-Also ask for a table of expected ROE, standard deviation of ROE and coefficient of variation, with no debt and with the chosen debt. You can't open the app until Part D publishes it, so ask Claude to show you in chat what the page shows after **Best price** and **Weak**. The share price should match your Part A work. You'll click the buttons yourself after Part D.
+You can't open the app until Part D publishes it, so ask Claude to show you in chat what the page shows after **Best price** and after **Highest EPS**. The share price should match your worksheet. You'll click the buttons yourself after Part D.
 
-### Part D: Make it installable and publish it (15 minutes)
+## Part D: Make it installable and publish it (15 minutes)
 
 1. Paste this prompt: "Make this a progressive web app. Add a web app manifest that uses the icons in icons/ and a service worker so it installs and works offline. Then commit and push."
 2. In the **Changes** card beside the chat, click the line counts (like `+120 -0`) to see every change Claude made. Read through it.
@@ -65,16 +60,16 @@ Also ask for a table of expected ROE, standard deviation of ROE and coefficient 
    If the address doesn't appear, open your repository's **Actions** tab and look for a run called **pages build and deployment**. If there's no such run after a few minutes, go back to **Settings**, then **Pages**. Set the branch to **None** and click **Save**. Then choose **main** and **/ (root)** again and click **Save**. When the run in the **Actions** tab has a green check, refresh the Pages screen.
 6. Open the address and install the app. In Chrome or Edge, click the install icon in the address bar. On an iPhone, tap Share, then **Add to Home Screen**.
 
-### Part E: Use the levers (10 minutes)
+## Part E: Use the levers (10 minutes)
 
-Use your app to answer the memo questions in the Canvas assignment. Every answer should cite a number from the app or your Part A work.
+Fill in section 2 of the case worksheet and answer the memo questions in the Canvas assignment. Every answer should cite a number from the app or your worksheet.
 
-### Part F (optional): A nervous lender
+## Part F (optional): A more cautious banker
 
-Ask Claude to add a button that loads a different banker's schedule from your device. The file must be read in the browser and never uploaded. Test it with `data/banker_schedule_tight_credit.csv`, where lenders charge more as Basalt borrows. Which amount of borrowing gives the highest share price now, and why did it move?
+Ask Claude to add a button that loads a different banker's schedule from your device. The file must be read in the browser and never uploaded. Test it with `data/banker_schedule_riskier.csv`, a made-up schedule from a banker who sees more risk at every amount of debt and won't lend $1,000,000. Which amount of borrowing gives the highest share price now, and why did it move? Record your answers in section 3 of the worksheet.
 
 Part D already merged your first pull request. To get this change onto your live app, click **Create PR** again and merge the new pull request.
 
 ## Submit
 
-In the Canvas assignment, paste your app's address, your repository's address and your memo.
+In the Canvas assignment, paste your app's address, your repository's address and your memo, and upload your worksheet.
