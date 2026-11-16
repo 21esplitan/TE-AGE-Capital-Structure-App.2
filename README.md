@@ -33,7 +33,7 @@ Start a Claude Code session on your repository and paste this prompt:
 Then:
 
 - When Claude asks for your section 1 numbers, give them. If yours don't match Claude's, figure out who is right and why. Rounding counts.
-- Check one number yourself with a calculator: the share price with $500,000 of debt under the case's $20 buyback, (500,000 − 0.11 × 500,000) × (1 − 0.40) / (100,000 − 500,000 / 20) / 0.165. It should match the app.
+- Check one number yourself with a calculator: the share price with $250,000 of debt under the case's $20 buyback. Type it in one go, without rounding along the way: (500,000 − 0.10 × 250,000) × (1 − 0.40) / (100,000 − 250,000 / 20) / 0.155. It should match the app. If it doesn't match your worksheet, figure out why.
 
 ## Part C: Add the levers (20 minutes)
 
