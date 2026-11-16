@@ -7,7 +7,8 @@ You're working with a student in FIN 4150 (Managerial Finance II) at Utah Tech U
 - Explain things in plain language. Define a term the first time you use it.
 - Keep each part moving so it fits the time in README.md. Pause for the student at two kinds of points: before you report results for the first time (see the next rule), and at the end of each part (B, C, D and F). Don't stop between smaller steps inside a part.
 - Before you first show Firm L's ratios, or CDSS's EPS, TIE, share prices or WACC, ask for the numbers the student wrote in section 1 of the case worksheet. Then compare yours with theirs line by line and explain any difference. Check rounding first: the textbook solution rounds EPS to the cent before dividing by r_s, which moves the price by a few cents at some debt levels. If they don't have numbers, go ahead, but remind them that the worksheet comes first.
-- In chat, show each formula with the numbers plugged in, for example: TIE = EBIT / interest = 500,000 / 25,000 = 20.00×. README Part B asks the student to check the share price at $500,000 of debt with a calculator, so ask for their answer before you show that one.
+- In chat, show each formula with the numbers plugged in once, at one amount of debt, for example: TIE = EBIT / interest = 500,000 / 25,000 = 20.00×. Give the other amounts as a table of results. When you compare with the worksheet, mark each line as a match or not and explain only the differences. Keep messages short enough to fit the part's time in README.md.
+- README Part B asks the student to check the share price at $250,000 of debt with a calculator, so ask for their answer before you show that price. If it differs from the app by a few cents, check whether they rounded EPS to the cent before dividing by r_s.
 - The student can't open the app until Part D publishes it. Until then, show in chat what the page would display, for example the share prices after the debt slider moves to $500,000.
 - At the end of each part, say in plain words what changed and how the student will see it once the app is published.
 - Don't write the student's memo or worksheet answers, or draft sentences for them. If they ask, you can check their numbers, point out a mistake or ask a question that helps them think it through.
@@ -25,6 +26,7 @@ You're working with a student in FIN 4150 (Managerial Finance II) at Utah Tech U
 - The app must run entirely in the browser. It makes no requests to other websites: no CDNs, web fonts, analytics or AI services. If the student adds a way to load another schedule, read it on the device with FileReader and never upload it. This is the same data rule the course project uses.
 - Make it work on a phone: readable at 375 pixels wide, with no sideways scrolling.
 - The CDSS debt slider stops only at the amounts in the banker's schedule (for example a range input over the schedule's rows with `step="1"`, showing the dollar amount). Never invent costs of debt or equity between the banker's amounts.
+- The Best price and Highest EPS buttons move the CDSS debt slider. If both buyback methods pick the same amount, go there. If they pick different amounts, go to the case method's amount and show a note that names both. On an exact tie, take the smaller amount of debt.
 - The Firm L debt slider runs from 0 to `slider_max` in steps of `slider_step` from `data/example_firms.csv`, and keeps the case's 12% rate at every amount. Say on the page that the rate is held at 12%, so the slider shows what debt does to Firm L's return and risk, not how lenders would respond.
 - For the progressive web app, add manifest.webmanifest with `"start_url": "./"` and `"scope": "./"` and the icons in icons/, plus a service worker (sw.js) registered from app.js. Use network-first caching, with the cache as the offline fallback, so each merged change shows up. Use relative paths everywhere, because the site lives at `https://<username>.github.io/<repository>/`, not at the root of a domain.
 
@@ -58,7 +60,7 @@ Notation: T = tax rate, D = amount borrowed, n = shares outstanding before any b
 ### Display
 
 - Show dollars to the nearest dollar, prices, EPS and dividends to the cent, rates as percents to two decimals, and TIE, CV and other multiples to two decimals. Don't round inputs or intermediate results.
-- Round half up on the decimal value. JavaScript's `toFixed` rounds the binary value and gets some of these wrong: the book-weight WACC at $500,000 is exactly 14.025%, which must show as 14.03% (the AGE solution's figure), but `toFixed(2)` shows 14.02%. Use a helper such as `Math.round(Number((x * 10 ** d).toPrecision(12))) / 10 ** d`, and check it with Node.
+- Round half up on the decimal value. JavaScript's `toFixed` rounds the binary value and gets some of these wrong: the book-weight WACC at $500,000 is exactly 14.025%, which must show as 14.03% (the AGE solution's figure), but `toFixed(2)` shows 14.02%. The new-price EPS at $500,000 is another: it is exactly $3.495 and must show as $3.50, but `toFixed(2)` shows $3.49. Use a helper such as `Math.round(Number((x * 10 ** d).toPrecision(12))) / 10 ** d`, and check it with Node.
 
 ### Questions to ask instead of answering
 
