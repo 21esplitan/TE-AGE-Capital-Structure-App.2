@@ -55,7 +55,7 @@ You can't open the app until Part D publishes it, so ask Claude to show you in c
 2. In the **Changes** card beside the chat, click the line counts (like `+120 -0`) to see every change Claude made. Read through it.
 3. Click **Create PR**. On GitHub, open your repository's **Pull requests** tab and open the new pull request. Click **Merge pull request**, then **Confirm merge**.
 4. On GitHub, go to your repository's **Settings**, then **Pages**. Under **Build and deployment**, set **Source** to **Deploy from a branch**, choose **main** and **/ (root)**, and click **Save**.
-5. Wait a few minutes and refresh the Pages screen. Your app's address appears at the top. It looks like `https://your-username.github.io/capital-structure-lab/`.
+5. Wait a few minutes and refresh the Pages screen. Your app's address appears at the top. It looks like `https://your-username.github.io/capital-structure-lab-starter/`.
 
    If the address doesn't appear, open your repository's **Actions** tab and look for a run called **pages build and deployment**. If there's no such run after a few minutes, go back to **Settings**, then **Pages**. Set the branch to **None** and click **Save**. Then choose **main** and **/ (root)** again and click **Save**. When the run in the **Actions** tab has a green check, refresh the Pages screen.
 6. Open the address and install the app. In Chrome or Edge, click the install icon in the address bar. On an iPhone, tap Share, then **Add to Home Screen**.
