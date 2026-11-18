@@ -220,11 +220,39 @@
     };
   }
 
+  // Management's stake after the buyback. Management does not sell, so its
+  // shares stay the same while the total shrinks:
+  //   stake = management share * n / shares remaining.
+  // If the buyback uses up exactly the outside investors' shares, management
+  // owns 100% (kind 'all'). If it would need more than that, management would
+  // have to sell (kind 'sell') and there is no stake to show.
+  function managementStake(c, repurchased) {
+    var outside = (1 - c.managementShare) * c.shares;
+    var tol = 1e-6;
+    if (repurchased > outside + tol) {
+      return { kind: 'sell', value: null, excess: repurchased - outside };
+    }
+    if (Math.abs(repurchased - outside) <= tol) return { kind: 'all', value: 1 };
+    return { kind: 'stake', value: c.managementShare * c.shares / (c.shares - repurchased) };
+  }
+
+  // Which amount of debt do the Best price / Highest EPS buttons pick?
+  // metric is 'price' or 'eps'. Each method picks its own best amount (ties go
+  // to the smaller debt). If they agree, go there. If not, use the case
+  // method's amount and report both so the page can say so.
+  function pickBest(tables, metric) {
+    var get = function (r) { return r[metric]; };
+    var caseIdx = bestIndex(tables.caseRows, get, true);
+    var newIdx = bestIndex(tables.newRows, get, true);
+    return { index: caseIdx, caseIdx: caseIdx, newIdx: newIdx, same: caseIdx === newIdx };
+  }
+
   var api = {
     roundHalfUp: roundHalfUp, parseCSV: parseCSV, buildInputs: buildInputs,
     firmStatement: firmStatement, cdssEbit: cdssEbit,
     caseMethod: caseMethod, newPriceMethod: newPriceMethod,
-    cdssTable: cdssTable, bestIndex: bestIndex, baselineCheck: baselineCheck
+    cdssTable: cdssTable, bestIndex: bestIndex, baselineCheck: baselineCheck,
+    managementStake: managementStake, pickBest: pickBest
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
