@@ -20,6 +20,17 @@
   }
   function rate(x) { return x === null ? '—' : pct(x); }
 
+  // ---------- Offline support ----------
+  // Register the service worker (sw.js) so the app installs and works offline.
+  // The relative path keeps it working at https://<username>.github.io/<repository>/.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {
+        // The app still works without it; it just won't run offline.
+      });
+    });
+  }
+
   // ---------- Loading ----------
   function load(path) {
     return fetch(path).then(function (r) {
