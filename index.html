@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AGE Capital Structure</title>
+  <meta name="theme-color" content="#1f3a5f">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>AGE Capital Structure</h1>
+    <p class="sub">FIN 4150 · Campus Deli and Sub Shop (CDSS)</p>
+  </header>
+
+  <main>
+    <p id="status" class="status" role="status">Loading data…</p>
+
+    <div class="toolbar">
+      <button type="button" id="david-btn" class="btn btn-fun">David R.</button>
+      <span class="hint">Sets every debt slider to $0.</span>
+    </div>
+    <p id="david-note" class="ok-note" role="status" aria-live="polite"></p>
+
+    <section id="firms">
+      <h2>1. Firm U and Firm L (question c)</h2>
+      <p class="note">Both firms have $20,000 of assets and face the same EBIT outlook. Firm U has no debt.</p>
+
+      <div class="control">
+        <label for="firm-slider">Firm L's debt: <strong id="firm-amount"></strong></label>
+        <input type="range" id="firm-slider" min="0" max="0" step="1" value="0">
+        <div class="ticks" id="firm-ticks" aria-hidden="true"></div>
+        <div class="btn-row">
+          <button type="button" id="case-btn" class="btn">Case</button>
+          <span class="hint">Sets Firm L's debt back to the case's amount.</span>
+        </div>
+        <p class="note">The interest rate is held at 12% at every amount of debt. So the slider shows what debt does to Firm L's return and risk, not how lenders would respond.</p>
+      </div>
+
+      <div id="firm-compare"></div>
+      <div id="firm-u"></div>
+      <div id="firm-l"></div>
+    </section>
+
+    <section id="cdss">
+      <h2>2. CDSS at each amount of borrowing</h2>
+
+      <div class="control">
+        <label for="cdss-slider">CDSS's debt: <strong id="cdss-amount"></strong></label>
+        <input type="range" id="cdss-slider" min="0" max="0" step="1" value="0">
+        <div class="ticks" id="cdss-ticks" aria-hidden="true"></div>
+        <p class="note" id="cdss-rates"></p>
+
+        <div class="btn-row">
+          <button type="button" id="best-btn" class="btn">Best price</button>
+          <button type="button" id="eps-btn" class="btn">Highest EPS</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="best-toggle" checked> Show the Best price button</label>
+        <p id="pick-note" class="pick-note" role="status" aria-live="polite"></p>
+      </div>
+
+      <div id="cdss-lever" aria-live="polite"></div>
+      <div id="stake-notes"></div>
+
+      <h3>Every amount in the banker's schedule</h3>
+      <div id="warnings"></div>
+
+      <h4>Case method: buy back at today's $20</h4>
+      <p class="note">Questions d(3) and d(4). WACC uses book weights.</p>
+      <div id="case-table"></div>
+
+      <h4>New-price method: buy back at the price after the announcement</h4>
+      <p class="note">WACC uses market weights.</p>
+      <div id="new-table"></div>
+
+      <div id="summary"></div>
+    </section>
+  </main>
+
+  <script src="capstruct.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
