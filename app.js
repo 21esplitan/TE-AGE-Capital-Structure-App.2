@@ -161,6 +161,17 @@
       '</tbody></table>';
     $('cdss-lever').innerHTML = html;
 
+    // Big price tiles; the one at its method's best price gets a badge.
+    var bc = CS.bestIndex(tables.caseRows, function (r) { return r.price; }, true);
+    var bn = CS.bestIndex(tables.newRows, function (r) { return r.price; }, true);
+    function tile(label, r, isBest) {
+      return '<div class="tile' + (isBest ? ' is-best' : '') + '"><span class="tile-label">' + label +
+        '</span><span class="tile-value">' + price(r.price) + '</span><span class="tile-sub">EPS ' + price(r.eps) +
+        ' · WACC ' + pct(r.wacc) + '</span>' + (isBest ? '<span class="tile-badge">Highest price</span>' : '') + '</div>';
+    }
+    $('cdss-tiles').innerHTML = tile('Share price: $20 buyback', c, cdssIdx === bc) +
+      tile('Share price: new price', n, cdssIdx === bn);
+
     // Notes for the two special cases.
     var notes = '';
     [['Case method', cs], ['New-price method', ns]].forEach(function (p) {

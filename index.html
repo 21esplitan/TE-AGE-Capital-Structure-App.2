@@ -26,7 +26,7 @@
     <p id="david-note" class="ok-note" role="status" aria-live="polite"></p>
 
     <section id="firms">
-      <h2>1. Firm U and Firm L (question c)</h2>
+      <h2><span class="step">1</span> Firm U and Firm L <span class="hint">question c</span></h2>
       <p class="note">Both firms have $20,000 of assets and face the same EBIT outlook. Firm U has no debt.</p>
 
       <div class="control">
@@ -34,7 +34,7 @@
         <input type="range" id="firm-slider" min="0" max="0" step="1" value="0">
         <div class="ticks" id="firm-ticks" aria-hidden="true"></div>
         <div class="btn-row">
-          <button type="button" id="case-btn" class="btn">Case</button>
+          <button type="button" id="case-btn" class="btn btn-ghost">Case</button>
           <span class="hint">Sets Firm L's debt back to the case's amount.</span>
         </div>
         <p class="note">The interest rate is held at 12% at every amount of debt. So the slider shows what debt does to Firm L's return and risk, not how lenders would respond.</p>
@@ -46,7 +46,7 @@
     </section>
 
     <section id="cdss">
-      <h2>2. CDSS at each amount of borrowing</h2>
+      <h2><span class="step">2</span> CDSS and its borrowing</h2>
 
       <div class="control">
         <label for="cdss-slider">CDSS's debt: <strong id="cdss-amount"></strong></label>
@@ -55,13 +55,14 @@
         <p class="note" id="cdss-rates"></p>
 
         <div class="btn-row">
-          <button type="button" id="best-btn" class="btn">Best price</button>
+          <button type="button" id="best-btn" class="btn btn-best">Best price</button>
           <button type="button" id="eps-btn" class="btn">Highest EPS</button>
         </div>
         <label class="toggle"><input type="checkbox" id="best-toggle" checked> Show the Best price button</label>
         <p id="pick-note" class="pick-note" role="status" aria-live="polite"></p>
       </div>
 
+      <div id="cdss-tiles" class="tiles" aria-live="polite"></div>
       <div id="cdss-lever" aria-live="polite"></div>
       <div id="stake-notes"></div>
 
