@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AGE Capital Structure</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>AGE Capital Structure</h1>
+    <p class="sub">FIN 4150 · Campus Deli and Sub Shop (CDSS)</p>
+  </header>
+
+  <main>
+    <p id="status" class="status" role="status">Loading data…</p>
+
+    <section id="firms">
+      <h2>1. Firm U and Firm L (question c)</h2>
+      <p class="note">Both firms have $20,000 of assets and face the same EBIT outlook. Firm L borrows $10,000 at 12%.</p>
+      <div id="firm-u"></div>
+      <div id="firm-l"></div>
+    </section>
+
+    <section id="cdss">
+      <h2>2. CDSS at each amount of borrowing</h2>
+      <div id="warnings"></div>
+
+      <h3>Case method: buy back at today's $20</h3>
+      <p class="note">Questions d(3) and d(4). WACC uses book weights.</p>
+      <div id="case-table"></div>
+
+      <h3>New-price method: buy back at the price after the announcement</h3>
+      <p class="note">WACC uses market weights.</p>
+      <div id="new-table"></div>
+
+      <div id="summary"></div>
+    </section>
+  </main>
+
+  <script src="capstruct.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
